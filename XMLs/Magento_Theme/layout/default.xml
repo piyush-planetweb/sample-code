@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        
+        <referenceContainer name="header.container">
+          <block class="Magento\Framework\View\Element\Template" name="header.tagline" as="header_tagline" template="Magento_Theme::html/header_tagline.phtml" before="-" />
+        </referenceContainer>
+
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_img_width" xsi:type="number">148</argument>
+                <argument name="logo_img_height" xsi:type="number">43</argument>
+            </arguments>
+        </referenceBlock>
+        
+        <referenceBlock name="footer_links" remove="true"/>
+        <referenceBlock name="form.subscribe" remove="true"/>
+            
+        <referenceContainer name="footer">
+          <block class="Magento\Cms\Block\Block" name="footer-block" after="-">
+              <arguments>
+                  <argument name="block_id" xsi:type="string">footer-block</argument>
+              </arguments>
+          </block>
+      </referenceContainer>
+      <referenceContainer name="page.wrapper">        
+        <referenceBlock name="copyright" remove="true"/>    
+      </referenceContainer>
+      <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Js\Components" name="js.beforebody" as="jsbeforebody" template="Magento_Theme::js/js.phtml"/>
+      </referenceContainer>
+      <move element="navigation.sections" destination="header-wrapper" after="logo" />
+      <!-- Keep minicart next to search block -->
+      <move element="minicart" destination="header-wrapper" after="top.search"/>
+      <!-- Move top All Header Links next to minicart -->
+      <move element="header.links" destination="header-wrapper" after="minicart"/>
+      <referenceContainer name="header.panel.wrapper" remove="true" />
+
+      <move element="currency" destination="header-wrapper" after="minicart"/>
+      <referenceContainer name="sidebar.additional">
+             <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+             <referenceBlock name="wishlist_sidebar" remove="true"/>
+        </referenceContainer>
+
+    </body>
+</page>

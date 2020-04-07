@@ -1,0 +1,15 @@
+<?php
+$om = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $om->get('\Magento\Store\Model\StoreManagerInterface');
+$baseurl = $storeManager->getStore()->getBaseUrl();
+$lastorderincrementid = $_REQUEST['orderid'];
+?>
+<div class="checkout-success">
+	<p>Your order # is: <span><?php echo $lastorderincrementid;?></span>.</p>
+    <p>We'll email you an order confirmation with details and tracking info.</p>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <a class="action primary continue" href="<?php echo $baseurl;?>"><span>Continue Shopping</span></a>
+        </div>
+    </div>
+</div>
